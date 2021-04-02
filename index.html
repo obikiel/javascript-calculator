@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator using javascript</title>
+    <style>
+        *, *::before,*::after{
+        box-sizing:border-box;
+        font-family:'Courier New', Courier, monospace;
+        font-weight:normal;
+    } 
+    body{
+        padding:0;
+        margin:o;
+        background:linear-gradient(to right, green,white);
+    }
+    .calculator-grid{
+        display:grid;
+        justify-content:center;
+        align-content:center;
+        min-height:100vh;
+        grid-template-columns:repeat(4,100px);
+        grid-template-rows:minmax(120px,auto) repeat(5,100px);
+    }
+    .calculator-grid > button{
+        cursor: pointer;
+        font-size: 2rem;
+        border:1px solid white;
+        outline:none;
+        background-color:rgba(255,255,255,.75);
+    }
+    .calculator-grid > button:hover {
+        background-color: rgba(255,255,255, .9);
+    }
+    .span-two{
+    grid-column: span 2;
+    }
+    .output{
+        grid-column: 1/ -1;
+        background-color:white;
+        display: flex;
+        align-items:flex-end;
+        justify-content:space-around;
+        flex-direction:column;
+        padding:10px;
+        word-wrap:break-word;
+        word-break:break-all;
+    }
+    .output .previous-operand{
+        color:rgba(255,255,255,.75);
+        font-size:1.5rem;  
+    }
+    .output.current-operand{
+        color:white;
+        font-size: 2.5rem;
+    }
+    </style>
+</head>
+<body>
+    <div class="calculator-grid">
+        <div class="output">
+            <div data-previous-operand class="previous-operand"></div>
+            <div id="inputlabel" class="current-operand"></div>
+        </div>
+        <button onclick="pushBtn(this);" class="span-two">AC</button>
+        <button onclick="pushBtn(this);">DEL</button>
+        <button onclick="pushBtn(this);">/</button>
+        <button onclick="pushBtn(this);">1</button>
+        <button onclick="pushBtn(this);">2</button>
+        <button onclick="pushBtn(this);">3</button>
+        <button onclick="pushBtn(this);">*</button>
+        <button onclick="pushBtn(this);">4</button>
+        <button onclick="pushBtn(this);">5</button>
+        <button onclick="pushBtn(this);">6</button>
+        <button onclick="pushBtn(this);">+</button>
+        <button onclick="pushBtn(this);">7</button>
+        <button onclick="pushBtn(this);">8</button>
+        <button onclick="pushBtn(this);">9</button>
+        <button onclick="pushBtn(this);">-</button>
+        <button onclick="pushBtn(this);">.</button>
+        <button onclick="pushBtn(this);">0</button>
+        <button onclick="pushBtn(this);"class="span-two">=</button>
+
+    </div>
+    <script>
+        var inputlabel = document.getElementById('inputlabel');
+function pushBtn(obj){
+    var pushed =obj.innerHTML;
+    if (pushed == '=')
+    {
+        inputlabel.innerHTML = eval(inputlabel.innerHTML);
+
+    }
+    else if (pushed == 'AC')
+    {
+        inputlabel.innerHTML = '0';
+    }
+    else if(pushed == 'DEL')
+    {
+        inputlabel.innerHTML = '0';
+    }
+    else
+    {
+        if(inputlabel.innerHTML == '0')
+        {
+            inputlabel.inner = pushed;
+        }
+        else
+        {
+            inputlabel.innerHTML += pushed;
+        }
+    }
+}
+    </script>
+</body>
+</html>
