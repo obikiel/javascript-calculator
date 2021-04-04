@@ -5,58 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>calculator using javascript</title>
-    <style>
-        *, *::before,*::after{
-        box-sizing:border-box;
-        font-family:'Courier New', Courier, monospace;
-        font-weight:normal;
-    } 
-    body{
-        padding:0;
-        margin:o;
-        background:linear-gradient(to right,blue,red);
-    }
-    .calculator-grid{
-        display:grid;
-        justify-content:center;
-        align-content:center;
-        min-height:100vh;
-        grid-template-columns:repeat(4,100px);
-        grid-template-rows:minmax(120px,auto) repeat(5,100px);
-    }
-    .calculator-grid > button{
-        cursor: pointer;
-        font-size: 2rem;
-        border:1px solid white;
-        outline:none;
-        background-color:rgba(255,255,255,.75);
-    }
-    .calculator-grid > button:hover {
-        background-color: rgba(255,255,255, .9);
-    }
-    .span-two{
-    grid-column: span 2;
-    }
-    .output{
-        grid-column: 1/ -1;
-        background-color:black;
-        color:white;
-        font-size:3em;
-        display: flex;
-        align-items:flex-end;
-        justify-content:space-around;
-        flex-direction:column;
-        padding:10px;
-        word-wrap:break-word;
-        word-break:break-all;
-    }
-    .output.current-operand{
-        color:white;
-        font-size: 5rem;
-    }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div><h1>Calculator</h1></div>
     <div class="calculator-grid">
         <div class="output">
 
@@ -83,17 +35,17 @@
 
     </div>
     <script>
-        var inputlabel = document.getElementById('inputlabel');
+        let inputlabel = document.getElementById('inputlabel');
         function pushBtn(obj)
         {
-            var pushed =obj.innerHTML;
+            let pushed =obj.innerHTML;
             
             if (pushed == '=')
                 {
                     inputlabel.innerHTML = eval(inputlabel.innerHTML);
 
                 }
-            else if (pushed == 'AC')
+            else if (pushed == 'AC' || pushed == 'DEL')
                 {
                     inputlabel.innerHTML = '0';
                 }
@@ -101,7 +53,7 @@
                 {
                     if(inputlabel.innerHTML == '0')
                         {
-                            inputlabel.inner = pushed;
+                            inputlabel.innerHTML = pushed;
                         }
                     else
                         {
