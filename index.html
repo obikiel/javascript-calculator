@@ -14,7 +14,7 @@
     body{
         padding:0;
         margin:o;
-        background:linear-gradient(to right, green,white);
+        background:linear-gradient(to right,blue,red);
     }
     .calculator-grid{
         display:grid;
@@ -39,7 +39,9 @@
     }
     .output{
         grid-column: 1/ -1;
-        background-color:white;
+        background-color:black;
+        color:white;
+        font-size:3em;
         display: flex;
         align-items:flex-end;
         justify-content:space-around;
@@ -48,20 +50,16 @@
         word-wrap:break-word;
         word-break:break-all;
     }
-    .output .previous-operand{
-        color:rgba(255,255,255,.75);
-        font-size:1.5rem;  
-    }
     .output.current-operand{
         color:white;
-        font-size: 2.5rem;
+        font-size: 5rem;
     }
     </style>
 </head>
 <body>
     <div class="calculator-grid">
         <div class="output">
-            <div data-previous-operand class="previous-operand"></div>
+
             <div id="inputlabel" class="current-operand"></div>
         </div>
         <button onclick="pushBtn(this);" class="span-two">AC</button>
@@ -86,33 +84,31 @@
     </div>
     <script>
         var inputlabel = document.getElementById('inputlabel');
-function pushBtn(obj){
-    var pushed =obj.innerHTML;
-    if (pushed == '=')
-    {
-        inputlabel.innerHTML = eval(inputlabel.innerHTML);
+        function pushBtn(obj)
+        {
+            var pushed =obj.innerHTML;
+            
+            if (pushed == '=')
+                {
+                    inputlabel.innerHTML = eval(inputlabel.innerHTML);
 
-    }
-    else if (pushed == 'AC')
-    {
-        inputlabel.innerHTML = '0';
-    }
-    else if(pushed == 'DEL')
-    {
-        inputlabel.innerHTML = '0';
-    }
-    else
-    {
-        if(inputlabel.innerHTML == '0')
-        {
-            inputlabel.inner = pushed;
+                }
+            else if (pushed == 'AC')
+                {
+                    inputlabel.innerHTML = '0';
+                }
+            else
+                {
+                    if(inputlabel.innerHTML == '0')
+                        {
+                            inputlabel.inner = pushed;
+                        }
+                    else
+                        {
+                            inputlabel.innerHTML += pushed;
+                        }
+                }
         }
-        else
-        {
-            inputlabel.innerHTML += pushed;
-        }
-    }
-}
     </script>
 </body>
 </html>
